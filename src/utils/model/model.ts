@@ -91,10 +91,23 @@ export function getUserSpecifiedModelSetting(): ModelSetting | undefined {
  */
 export function getMainLoopModel(): ModelName {
   const model = getUserSpecifiedModelSetting()
-  if (model !== undefined && model !== null) {
-    return parseUserSpecifiedModel(model)
+  const resolved =
+    model !== undefined && model !== null
+      ? parseUserSpecifiedModel(model)
+      : getDefaultMainLoopModel()
+  // kuboes: with the OpenAI-compatible provider the internal ID is never
+  // sent (the fetch adapter substitutes KUBOES_OPENAI_MODEL at query
+  // time), but the Anthropic SDK warns on sonnet-4-5 in messages.create
+  // before fetch runs. Map it to sonnet-4-6 as the internal placeholder
+  // so the warning cannot fire for a model that is never called.
+  if (
+    isOpenAICompatibleProvider() &&
+    (resolved === 'claude-sonnet-4-5' ||
+      resolved === 'claude-sonnet-4-5-20250929')
+  ) {
+    return getModelStrings().sonnet46
   }
-  return getDefaultMainLoopModel()
+  return resolved
 }
 
 export function getBestModel(): ModelName {
@@ -119,6 +132,12 @@ export function getDefaultOpusModel(): ModelName {
 export function getDefaultSonnetModel(): ModelName {
   if (process.env.ANTHROPIC_DEFAULT_SONNET_MODEL) {
     return process.env.ANTHROPIC_DEFAULT_SONNET_MODEL
+  }
+  // kuboes: same reason as getMainLoopModel — under the OpenAI-compatible
+  // provider the internal ID is only a placeholder, and sonnet-4-5 makes
+  // the Anthropic SDK warn about a model that is never called.
+  if (isOpenAICompatibleProvider()) {
+    return getModelStrings().sonnet46
   }
   // Default to Sonnet 4.5 for 3P since they may not have 4.6 yet
   if (getAPIProvider() !== 'firstParty') {
