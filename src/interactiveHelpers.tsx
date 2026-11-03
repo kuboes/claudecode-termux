@@ -203,16 +203,22 @@ export async function showSetupScreens(root: Root, permissionMode: PermissionMod
   // Check for custom API key
   // On homespace, ANTHROPIC_API_KEY is preserved in process.env for child
   // processes but ignored by Claude Code itself (see auth.ts).
+  // kuboes: the ApproveApiKey dialog is removed. An env key is auto-approved
+  // (same list write as pressing Yes) so opening the app goes straight to
+  // work. auth.ts only uses an env key when it is in the approved list, so
+  // skipping the dialog without this write would break the key entirely.
   if (process.env.ANTHROPIC_API_KEY && !isRunningOnHomespace()) {
     const customApiKeyTruncated = normalizeApiKeyForConfig(process.env.ANTHROPIC_API_KEY);
     const keyStatus = getCustomApiKeyStatus(customApiKeyTruncated);
     if (keyStatus === 'new') {
-      const {
-        ApproveApiKey
-      } = await import('./components/ApproveApiKey.js');
-      await showSetupDialog<boolean>(root, done => <ApproveApiKey customApiKeyTruncated={customApiKeyTruncated} onDone={done} />, {
-        onChangeAppState
-      });
+      saveGlobalConfig(current => ({
+        ...current,
+        customApiKeyResponses: {
+          ...current.customApiKeyResponses,
+          approved: [...(current.customApiKeyResponses?.approved ?? []), customApiKeyTruncated],
+          rejected: (current.customApiKeyResponses?.rejected ?? []).filter(k => k !== customApiKeyTruncated)
+        }
+      }));
     }
   }
   if ((permissionMode === 'bypassPermissions' || allowDangerouslySkipPermissions) && !hasSkipDangerousModePermissionPrompt()) {
