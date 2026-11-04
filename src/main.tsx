@@ -4359,11 +4359,14 @@ async function run(): Promise<CommanderCommand> {
   // - We perform exact string comparison (including SHA) to detect any change
   // - This ensures users always get the latest build, even when only the SHA changes
   // - UI shows both versions including build metadata for clarity
-  program.command('update').alias('upgrade').description('Check for updates and install if available').action(async () => {
-    const {
-      update
-    } = await import('src/cli/update.js');
-    await update();
+  // kuboes: upstream update command is removed in this fork. Installing
+  // upstream Claude Code would overwrite kuboes patches, so `update` only
+  // prints this and does nothing. Update this fork with git pull from
+  // kuboes/code instead.
+  program.command('update').alias('upgrade').description('Upstream updates are disabled in kuboes/code; update via git pull from kuboes/code').action(async () => {
+    process.stderr.write('kuboes: upstream update is disabled in this fork.\n');
+    process.stderr.write('Update with: git pull from kuboes/code, then re-run setup if needed.\n');
+    process.exit(0);
   });
 
   // claude up — run the project's CLAUDE.md "# claude up" setup instructions.
