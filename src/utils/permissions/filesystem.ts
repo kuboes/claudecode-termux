@@ -328,9 +328,15 @@ export function getClaudeTempDirName(): string {
 // Memoized: called per-tool from permission checks (yoloClassifier, sandbox-adapter)
 // and per-turn from BashTool prompt. Inputs (CLAUDE_CODE_TMPDIR env + platform) are
 // fixed at startup, and the realpath of the system tmp dir does not change mid-session.
+// kuboes: honor TMPDIR before the hardcoded /tmp. On Android/Termux the system
+// /tmp belongs to the shell user, so /tmp/claude-{uid} is not writable by the
+// app user and every Bash tool call died with EACCES mkdir '/tmp/claude-{uid}'.
+// Termux sets TMPDIR=$PREFIX/tmp (writable); on ordinary Linux/macOS TMPDIR is
+// usually unset, so the default path is unchanged there.
 export const getClaudeTempDir = memoize(function getClaudeTempDir(): string {
   const baseTmpDir =
     process.env.CLAUDE_CODE_TMPDIR ||
+    process.env.TMPDIR ||
     (getPlatform() === 'windows' ? tmpdir() : '/tmp')
 
   // Resolve symlinks in the base temp directory (e.g., /tmp -> /private/tmp on macOS)
