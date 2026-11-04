@@ -17,6 +17,12 @@ type Props = {
   verbose: boolean;
 };
 export function AutoUpdaterWrapper(t0) {
+  // kuboes: upstream auto-update banners are removed in this fork.
+  // Running "brew/apk upgrade claude-code" would replace kuboes/code with
+  // upstream Claude Code and wipe kuboes patches, so no update check runs
+  // and no "Update available!" banner is ever shown. Update this fork with
+  // git pull from kuboes/code instead.
+  return null;
   const $ = _c(17);
   const {
     isUpdating,
