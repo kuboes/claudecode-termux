@@ -1,6 +1,6 @@
-# kuboes/code ギャップ表（2026-10-30 時点）
+# kuboes/claudecode-termux ギャップ表（2026-10-30 時点）
 
-元: kuboes/code = kubobeem/code のフォーク = JiaranI/start-claude-code のフォーク。
+元: kuboes/claudecode-termux = kubobeem/code のフォーク = JiaranI/start-claude-code のフォーク。
 Claude Code v2.1.88 のソース約1,925ファイル。`scripts/setup.mjs` で Bun 経由で動く。
 調査元: Hermes（Nous Research）、OpenClaw、Codebuff の公開情報。実装はまだしていない。
 

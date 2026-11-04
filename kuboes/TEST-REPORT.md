@@ -1,4 +1,4 @@
-# 自分の環境でのテスト結果（2026-10-30、kuboes/code）
+# 自分の環境でのテスト結果（2026-10-30、kuboes/claudecode-termux）
 
 環境: この VM（Bun 1.4.4、Node v24.22.1、root ユーザー、x86_64）
 
@@ -22,7 +22,7 @@
 
 ## 注意
 - root ユーザーのため `--dangerously-skip-permissions` は使えない（セキュリティで弾かれた）。テストは `--tools ""` で行った
-- node_modules はローカルの clone 内のみ。kuboes/code への push はしていない
+- node_modules はローカルの clone 内のみ。kuboes/claudecode-termux への push はしていない
 
 ## 2026-10-31 追記（フェーズ1〜6）
 - フェーズ1続き: tool_calls ↔ tool_use 変換、ストリーミング変換、429/529/5xx フェイルオーバー、モデルピッカー — bun test 9 pass

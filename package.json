@@ -1,7 +1,7 @@
 {
-  "name": "start-claude-code",
+  "name": "claudecode-termux",
   "version": "2.1.88",
-  "description": "Run Claude Code from leaked source - one command setup",
+  "description": "Claude Code for Termux (kuboes fork) - one command setup",
   "type": "module",
   "scripts": {
     "setup": "node scripts/setup.mjs",

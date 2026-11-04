@@ -4362,10 +4362,10 @@ async function run(): Promise<CommanderCommand> {
   // kuboes: upstream update command is removed in this fork. Installing
   // upstream Claude Code would overwrite kuboes patches, so `update` only
   // prints this and does nothing. Update this fork with git pull from
-  // kuboes/code instead.
-  program.command('update').alias('upgrade').description('Upstream updates are disabled in kuboes/code; update via git pull from kuboes/code').action(async () => {
+  // kuboes/claudecode-termux instead.
+  program.command('update').alias('upgrade').description('Upstream updates are disabled in kuboes/claudecode-termux; update via git pull from kuboes/claudecode-termux').action(async () => {
     process.stderr.write('kuboes: upstream update is disabled in this fork.\n');
-    process.stderr.write('Update with: git pull from kuboes/code, then re-run setup if needed.\n');
+    process.stderr.write('Update with: git pull from kuboes/claudecode-termux, then re-run setup if needed.\n');
     process.exit(0);
   });
 

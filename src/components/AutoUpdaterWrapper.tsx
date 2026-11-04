@@ -18,10 +18,10 @@ type Props = {
 };
 export function AutoUpdaterWrapper(t0) {
   // kuboes: upstream auto-update banners are removed in this fork.
-  // Running "brew/apk upgrade claude-code" would replace kuboes/code with
+  // Running "brew/apk upgrade claude-code" would replace kuboes/claudecode-termux with
   // upstream Claude Code and wipe kuboes patches, so no update check runs
   // and no "Update available!" banner is ever shown. Update this fork with
-  // git pull from kuboes/code instead.
+  // git pull from kuboes/claudecode-termux instead.
   return null;
   const $ = _c(17);
   const {

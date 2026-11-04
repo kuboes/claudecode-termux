@@ -1,16 +1,18 @@
-# Start Claude Code
+# claudecode-termux
 
-> Run Claude Code `v2.1.88` from leaked source — one command setup. Both interactive TUI and non-interactive modes work.
+> Claude Code `v2.1.88` on Termux — kuboes fork, one command setup. Both interactive TUI and non-interactive modes work. Upstream updates are disabled so the fork is never overwritten, and any OpenAI-compatible server can be used as the provider.
 
-**GitHub**: https://github.com/JiaranI/start-claude-code
+**GitHub**: https://github.com/kuboes/claudecode-termux
+
+Fork chain: `kuboes/claudecode-termux` ← `kubobeem/code` ← `JiaranI/start-claude-code` (formerly `kuboes/code`, renamed 2026-11-04).
 
 ![Open source vs Official](screenshot.png)
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/JiaranI/start-claude-code.git
-cd start-claude-code
+git clone https://github.com/kuboes/claudecode-termux.git
+cd claudecode-termux
 
 # Set API key (or use existing OAuth login from official Claude Code)
 export ANTHROPIC_API_KEY="sk-ant-xxx"
@@ -104,7 +106,7 @@ bun src/entrypoints/cli.tsx --dangerously-skip-permissions
 
 ## OpenAI-Compatible Providers
 
-kuboes/code can talk to any OpenAI-compatible `/v1/chat/completions` server
+claudecode-termux can talk to any OpenAI-compatible `/v1/chat/completions` server
 (Ollama, llama.cpp, LM Studio, vLLM, Agnes AI, ...). Set the three `KUBOES_OPENAI_*`
 variables and the Anthropic SDK is pointed at a translating fetch adapter; nothing
 else changes.

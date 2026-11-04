@@ -1,11 +1,11 @@
-# kuboes/code 全部入りロードマップ
+# kuboes/claudecode-termux 全部入りロードマップ
 
 方針: Claude Code の土台は活かす。Hermes / OpenClaw / Codebuff の機能は「コードの丸写し」ではなく、
-公開されている機能の考え方だけ借りて、kuboes/code に合う形で作り直す。
+公開されている機能の考え方だけ借りて、kuboes/claudecode-termux に合う形で作り直す。
 日本語機能はなし。WebUI はいったんなし。autopilot は必須。
 
 ## フェーズ0: 土台確認（済み）
-- kuboes/code を fork 済み（公開、parent=kubobeem/code）
+- kuboes/claudecode-termux を fork 済み（公開、parent=kubobeem/code）
 - tree 1,925ファイルを確認。既存機能は GAP.md 参照
 - ローカルに shallow clone してある: `~/workspace/kuboes-code/repo`
 
@@ -74,6 +74,6 @@
 - テーマ、音声入力・読み上げ、オフライン fallback
 
 ## 進め方・注意
-- 1フェーズずつ動くものを作って、kuboes/code に push するかどうかはその都度確認する
+- 1フェーズずつ動くものを作って、kuboes/claudecode-termux に push するかどうかはその都度確認する
 - リーク元のコードをそのまま公開で育てるリスクは残る。公開する範囲と自作部分の分離は、フェーズが進むたびに見直す
 - 動作確認は、Agnes AI（`agnes-2.5-flash`）と `localhost:8080` の OpenAI 互換サーバを軸にする。Ollama は使わない（2026-11-01 変更）

@@ -21,5 +21,5 @@
 
 ## 未検証・ブロック要因
 - 実機 Ollama がこの VM にない（`ollama` コマンドなし）。モックでは通っているが、実 Ollama との疎通は未検証
-- src への統合と kuboes/code への push は、ユーザー確認なしではやらない（外部送信のため）
-- 次に必要なユーザー判断: (1) src に統合して kuboes/code に push していいか、(2) 実 Ollama のテスト環境は Termux / 自宅マシンのどちらでやるか
+- src への統合と kuboes/claudecode-termux への push は、ユーザー確認なしではやらない（外部送信のため）
+- 次に必要なユーザー判断: (1) src に統合して kuboes/claudecode-termux に push していいか、(2) 実 Ollama のテスト環境は Termux / 自宅マシンのどちらでやるか

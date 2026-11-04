@@ -1,9 +1,9 @@
-# kuboes/code 連続作業 進捗
+# kuboes/claudecode-termux 連続作業 進捗
 
 ## 2026-10-31 00:09 JST — フェーズ1〜6のローカル実装完了（push なし）
 作業場所: `~/workspace/kuboes-code/`。GitHub への push、外部送信、課金、秘密情報の扱いは一切していない。
 日本語機能と WebUI は作っていない。autopilot は必須として実装した。
-既存の `repo/`（kuboes/code の shallow clone）は触っていない。`git status` は clean のまま。
+既存の `repo/`（kuboes/claudecode-termux の shallow clone）は触っていない。`git status` は clean のまま。
 
 ### フェーズ1続き: OpenAI 互換（phase1-openai-provider/）
 - 追加: tool_calls ↔ Anthropic tool_use 変換（往復テスト済み）
