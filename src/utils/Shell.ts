@@ -201,8 +201,10 @@ export async function exec(
     .padStart(4, '0')
 
   // Sandbox temp directory - use per-user directory name to prevent multi-user permission conflicts
+  // kuboes: honor TMPDIR like getClaudeTempDir, so Termux (system /tmp not
+  // writable by the app user) does not try to mkdir under /tmp.
   const sandboxTmpDir = posixJoin(
-    process.env.CLAUDE_CODE_TMPDIR || '/tmp',
+    process.env.CLAUDE_CODE_TMPDIR || process.env.TMPDIR || '/tmp',
     getClaudeTempDirName(),
   )
 
