@@ -15,6 +15,14 @@ cd "$DIR"
 # Ensure bun is in PATH
 export PATH="$HOME/.bun/bin:$PATH"
 
+# kuboes: on Termux the system /tmp is not writable by the app user, so
+# Claude's temp dir (/tmp/claude-{uid}) makes every Bash tool call fail
+# with EACCES. If TMPDIR is unset but Termux's own tmp exists, use it.
+# (Termux normally sets TMPDIR itself; this covers launches where it was lost.)
+if [ -z "$TMPDIR" ] && [ -n "$PREFIX" ] && [ -d "$PREFIX/tmp" ]; then
+  export TMPDIR="$PREFIX/tmp"
+fi
+
 # Check if setup has been done
 if [ ! -d "node_modules/@anthropic-ai/sdk" ]; then
   echo "First run detected. Running setup..."
